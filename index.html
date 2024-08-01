@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- ! Tailwind config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {},
+            fontFamily: {
+              Montserrat: ["Montserrat", "sans-serif"],
+              Inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <script defer src="./scripts/main.js"></script>
+    <script defer src="./scripts/form-secure.js"></script>
+    <script defer src="./scripts/notify.js"></script>
+    <script defer src="./scripts/navbar.js"></script>
+    <script defer src="./scripts/dynamic-domain.js"></script>
+    <script defer src="./scripts/modals.js"></script>
+    <script defer src="scripts/faq.js"></script>
+    <script defer src="scripts/button-to-form.js"></script>
+
+    <link rel="stylesheet" href="styles/faq.css " />
+    <link rel="stylesheet" href="styles/notify.css" />
+    <link rel="stylesheet" href="styles/globals.css" />
+    <link rel="stylesheet" href="./styles/navbar.css" />
+
+    <!-- ? Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ? navbar mobile -->
+    <header class="flex justify-center md:hidden fixed z-50 w-screen">
+      <nav
+        class="flex w-full px-4 sm:px-8 sm:w-[640px] justify-between h-[80px] md:hidden"
+      >
+        <div class="text-lg flex gap-4 items-center text-white">
+          <a href="#contact-section">
+            <img
+              class="object-contain w-8"
+              src="./assets/Desktop/logo.png"
+              alt="Logo"
+            />
+          </a>
+          <span class="dyn-name font-semibold"></span>
+        </div>
+        <img
+          onclick="toggleMenu()"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iNDgiIGQ9Ik04OCAxNTJoMzM2TTg4IDI1NmgzMzZNODggMzYwaDMzNiIvPjwvc3ZnPg=="
+          alt="Menu Icon"
+          class="menu-icon"
+          id="menu-icon"
+        />
+      </nav>
+      <div class="menu-container bg-[#181609]" id="menu-container">
+        <div class="p-5">
+          <button onclick="toggleMenu()" class="close-btn" id="close-btn">
+            &times;
+          </button>
+        </div>
+        <ul class="text-textPrimary">
+          <li onclick="toggleMenu()"><a href="#home-section">Home</a></li>
+          <li onclick="toggleMenu()"><a href="#about-section">About us</a></li>
+          <li onclick="toggleMenu()">
+            <a href="#advices-section">Benefits</a>
+          </li>
+          <li onclick="toggleMenu()"><a href="#24-section">Contact</a></li>
+          <li onclick="toggleMenu()">
+            <a href="#hotels-section">Get to know</a>
+          </li>
+          <li onclick="toggleMenu()">
+            <a href="#contact-section">Get in touch</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ? Header section desktop-->
+    <header
+      class="hidden bg-[#181609] justify-center md:flex fixed z-50 w-screen"
+    >
+      <nav
+        class="flex w-full justify-between sm:px-8 lg:px-10 h-[80px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+      >
+        <div class="flex items-center gap-10">
+          <div class="font-normal text-lg flex items-center gap-4">
+            <a href="#contact-section"
+              ><img
+                class="object-contain w-10"
+                src="./assets/Desktop/logo.png"
+                alt="Logo"
+            /></a>
+            <span class="dyn-name text-white text-xl"></span>
+          </div>
+        </div>
+
+        <div class="">
+          <ul class="font-semibold [&>li]:cursor-pointer text-white flex gap-6">
+            <li><a href="#home-section">Home</a></li>
+            <li><a href="#about-section">About us</a></li>
+            <li><a href="#hotels-section">Hotels</a></li>
+            <li><a href="#about-section">About</a></li>
+            <li><a href="#advices-section">Benefits</a></li>
+          </ul>
+        </div>
+
+        <div class="">
+          <a onclick="clickModal('contact-modal')">
+            <button
+              class="rounded-3xl text-white underline font-bold py-2 px-5 hover:scale-105 transition-all duration-300"
+            >
+              Book now
+            </button>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="py-8 px-4 bg-[#181609] [&>section]:pt-[80px] font-Inter">
+      <!-- ? Hero section -->
+      <section id="home-section" class="flex justify-center pt-[80px]">
+        <div
+          class="flex flex-col h-[full] lg:mt-[80px] px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="flex flex-col gap-8 lg:flex-row-reverse">
+            <h1
+              class="font-Inter text-white text-[40px]/[50px] md:text-6xl/[70px] lg:text-7xl/[80px] font-semibold lg:text-[70]/[108px] lg:font-bold lg:w-[60%]"
+            >
+              Unforgettable escapade in casino hotels throughout
+              <span class="bg-[#01E819] p-1 border">U.K</span>
+            </h1>
+
+            <div class="md:h-[350px] lg:w-[40%]">
+              <img
+                src="images/1b5b17523b21d83425a189a63f9cea51.jpeg"
+                class="h-full w-full object-cover"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-8 lg:flex-row-reverse">
+            <div
+              class="bg-purple-300 h-[160px] md:h-[260px] lg:h-[350px] lg:w-[70%]"
+            >
+              <img
+                src="images/946f66926e3341b0961a7d238f80071e.jpeg"
+                class="h-full w-full object-cover object-bottom"
+                alt=""
+              />
+            </div>
+
+            <div class="flex flex-col lg:justify-end gap-8 lg:w-[30%]">
+              <p class="font-Inter text-white lg:text-lg">
+                Embark on an unmatched journey of luxury and entertainment at a
+                premier casino hotel in the UK. Whether you seek the thrill of
+                the gaming tables or the serenity of opulent rooms, your ideal
+                stay awaits
+              </p>
+
+              <a
+                href="#hotels-section"
+                class="text-white w-[6 0%] underline font-Inter font-bold text-lg text-center bg-[#01E819] p-4 rounded-xl"
+              >
+                Explore today
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ? Cards section -->
+      <section id="about-section" class="flex justify-center">
+        <div
+          class="flex flex-col px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="flex gap-3">
+            <h2
+              class="w-1/2 text-white font-bold text-2xl md:text-[28px]/[47px] lg:text-[52px]/[100px]"
+            >
+              At [NOMBRE DINÁMICO] is all about relax and fun
+            </h2>
+
+            <div class="flex h-full justify-center items-center w-1/2">
+              <hr class="h-[1px] w-full bg-white" />
+            </div>
+          </div>
+
+          <p class="font-Inter md:text-lg lg:text-xl text-white">
+            At [NOMBRE DINÁMICO], we are more than just a booking platform; we
+            are your gateway to luxury and entertainment at the finest casino
+            hotels in the UK. Join us and discover a world where opulence meets
+            excitement, and every stay is a memorable adventure.
+          </p>
+          <!--!CARDS-->
+          <article
+            class="flex flex-col md:flex-row md:[&>div]:h-[450px] lg:[&>div]:h-[320px] items-center gap-5"
+          >
+            <!--!card-->
+            <div class="flex gap-2">
+              <div class="w-[20%] flex justify-center items-center">
+                <h3 class="text-white text-[45px] font-bold">01</h3>
+              </div>
+              <div class="w-[80%]">
+                <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                  Mission
+                </h2>
+                <p class="text-white p-2">
+                  At [NOMBRE DINÁMICO], our mission is to link our clients with
+                  the most prestigious casino hotels in the UK. We excel in
+                  simplifying your search and ensuring you experience the height
+                  of hospitality and entertainment. From competitive rates to
+                  seamless direct communication with our esteemed hotel
+                  partners, we are dedicated to making your booking process
+                  smooth and enjoyable.
+                </p>
+              </div>
+            </div>
+
+            <!--!card-->
+            <div class="flex gap-2">
+              <div class="w-[20%] flex justify-center items-center">
+                <h3 class="text-white text-[45px] font-bold">02</h3>
+              </div>
+              <div class="w-[80%]">
+                <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                  Vision
+                </h2>
+                <p class="text-white p-2">
+                  We aim to be the leading authority in facilitating
+                  unparalleled experiences at luxury casino hotels across the
+                  UK. Our goal is to be recognized for our unwavering dedication
+                  to service quality, transparent information, and complete
+                  customer satisfaction. We aspire to set the benchmark for the
+                  industry, revolutionizing the way premium hospitality
+                  experiences are booked and enjoyed.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!--!card-->
+          <div class="flex gap-2">
+            <div class="w-[20%] flex justify-center items-center">
+              <h3 class="text-white text-[45px] font-bold">03</h3>
+            </div>
+            <div class="w-[80%]">
+              <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                Our brick and mortar values
+              </h2>
+              <p class="text-white p-2">
+                ● Customer-Centric Approach: We place the highest priority on
+                our customers' needs, ensuring that every interaction exceeds
+                their expectations. <br />
+                <br />
+                ● Integrity and Transparency: We are dedicated to offering
+                honest and clear information, helping our customers make
+                well-informed decisions. <br />
+                <br />
+                ● Innovation: By utilizing cutting-edge technology and
+                expertise, we continuously enhance the booking and stay
+                experience. <br />
+                <br />
+                ● Reliability: We promise dependable and responsive service from
+                the initial inquiry to post-stay support. <br />
+                <br />
+                ● Passion for Hospitality: Our passion drives us to deliver
+                outstanding hospitality and create memorable experiences that
+                last long after your stay.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ? form section -->
+      <section id="form-section" class="flex flex-col items-center">
+        <div
+          class="flex flex-col px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="flex gap-3">
+            <h2
+              class="w-1/2 text-white font-bold text-2xl md:text-[28px]/[47px] lg:text-[52px]/[100px]"
+            >
+              At [NOMBRE DINÁMICO] is all about relax and fun
+            </h2>
+
+            <div class="flex justify-center items-center w-1/2">
+              <hr class="h-[1px] w-full bg-white" />
+            </div>
+          </div>
+
+          <h4 class="text-white text-lg">Get an estimate today!</h4>
+          <form
+            id="estimate-form"
+            action=""
+            class="flex flex-col rounded-xl py-10 gap-4 bg-[#FFFFFF] p-5 w-full [&>input]:bg-[#F0F0F0] [&>input]:p-3 [&>input]:rounded-xl [&>label]:font-bold [&>label]:text-[#181818] [&>label]:text-2xl"
+          >
+            <label for="people">Number of People</label>
+            <select name="people" class="rounded-xl p-3 bg-[#F0F0F0]" id="">
+              <option value="">Choose number</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="0">0</option>
+            </select>
+            <label for="hotel">Select Hotel</label>
+            <select
+              name="hotel"
+              class="rounded-xl bg-[#F0F0F0] p-3"
+              id="hotels"
+            >
+              <option value="">Choose hotel</option>
+              <option value="clermont">Clermont Club</option>
+              <option value="hippodrome">Hippodrome Casino</option>
+              <option value="aspers">Aspers Casino</option>
+              <option value="genting">Genting Casino</option>
+              <option value="alea">ALEA Nottingham</option>
+              <option value="rainbow">Rainbow Casino</option>
+            </select>
+
+            <label for="name">Name</label>
+            <input
+              type="text"
+              placeholder="Type name"
+              class="placeholder:text-gray-400"
+              name="name"
+              id=""
+            />
+            <label for="lastname">Lastname</label>
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Type lastname"
+              id=""
+            />
+            <label for="phone">Phone number</label>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Type phone number"
+              id=""
+            />
+            <label for="date">Date</label>
+            <input type="date" name="date" id="" class="text-gray-400" />
+
+            <button
+              onclick="sendSubscribeForm('estimate-form')"
+              class="flex bg-[#01E819] justify-center items-center gap-3 p-3 rounded-full w-[90%] md:w-[30%] md:self-end self-center mt-2"
+              type="submit"
+            >
+              <h4 class="text-white font-medium font-Heebo text-xl">Send</h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#ffffff"
+                  d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2m0 15v-4H7v-2h5V7l5 5z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ? hotels section -->
+      <section id="hotels-section" class="flex flex-col items-center">
+        <div
+          class="flex flex-col px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="flex gap-3">
+            <h2
+              class="w-1/2 text-white font-bold text-2xl md:text-[28px]/[47px] lg:text-[52px]/[100px]"
+            >
+              Discover your new favorite casino hotel with a single click
+            </h2>
+
+            <div class="flex justify-center items-center w-1/2">
+              <hr class="h-[1px] w-full bg-white" />
+            </div>
+          </div>
+          <!--!HOTELS-->
+          <article class="flex flex-col gap-8">
+            <!--!hotel-->
+            <div class="flex flex-col lg:flex-row gap-5">
+              <div class="flex flex-col lg:flex-row gap-5 lg:w-[70%]">
+                <div class="lg:w-1/2 flex items-center">
+                  <img
+                    src="images/62fd08f5043f26d62897e90f745cb07d.png"
+                    class="lg:h-[280px] object-cover"
+                    alt=""
+                  />
+                </div>
+
+                <div class="flex flex-col gap-3 lg:w-1/2 lg:justify-center">
+                  <h3 class="text-2xl md:text-[28px] text-white">
+                    Clermont Club
+                  </h3>
+                  <h4 class="text-[#FFBA53] text-lg">Official Rating</h4>
+                  <!--!STARS-->
+                  <div class="flex gap-2 mb-5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                  </div>
+                  <a
+                    href="#form-section"
+                    id="clermont"
+                    class="text-white w-[50%] md:w-[20%] lg:w-[40%] underline font-Inter font-bold text-lg text-center bg-[#01E819] p-3 rounded-xl cursor-pointer"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+
+              <div class="text-white flex flex-col gap-2 lg:w-[30%]">
+                <h3 class="bg-[#01E819] text-lg p-2 font-bold">
+                  Experience unparalleled luxury
+                </h3>
+                <p class="md:text-lg">
+                  At the historic Clermont Club, nestled in the prestigious
+                  Berkeley Square, Mayfair. Renowned for its sophisticated
+                  ambiance and exclusive gaming rooms, it offers a blend of
+                  classic elegance and modern amenities, perfect for discerning
+                  guests seeking a high-end casino experience.
+                </p>
+              </div>
+            </div>
+            <!--!hotel-->
+            <div class="flex flex-col lg:flex-row gap-5">
+              <div class="flex flex-col lg:flex-row gap-5 lg:w-[70%]">
+                <div class="lg:w-1/2 flex items-center">
+                  <img
+                    src="images/62fd08f5043f26d62897e90f745cb07d.png"
+                    class="lg:h-[280px] object-cover"
+                    alt=""
+                  />
+                </div>
+
+                <div class="flex flex-col gap-3 lg:w-1/2 lg:justify-center">
+                  <h3 class="text-2xl md:text-[28px] text-white">
+                    Hippodrome Casino
+                  </h3>
+                  <h4 class="text-[#FFBA53] text-lg">Official Rating</h4>
+                  <!--!STARS-->
+                  <div class="flex gap-2 mb-5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                  </div>
+                  <a
+                    href="#form-section"
+                    id="hippodrome"
+                    class="text-white w-[50%] md:w-[20%] lg:w-[40%] underline font-Inter font-bold text-lg text-center bg-[#01E819] p-3 rounded-xl"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+
+              <div class="text-white flex flex-col gap-2 lg:w-[30%]">
+                <h3 class="bg-[#01E819] text-lg p-2 font-bold">
+                  An iconic listed 1900 theatre,
+                </h3>
+                <p class="md:text-lg">
+                  The Hippodrome has been meticulously restored to become one of
+                  London's premier entertainment complexes. Spanning 80,000
+                  square feet over seven floors, it offers an unrivaled blend of
+                  gaming, live shows, and dining experiences. Guests can enjoy a
+                  variety of gaming options, including poker, slots, and table
+                  games, in a venue that combines historical charm with
+                  contemporary luxury, ensuring a memorable visit for all.
+                </p>
+              </div>
+            </div>
+            <!--!hotel-->
+            <div class="flex flex-col lg:flex-row gap-5">
+              <div class="flex flex-col lg:flex-row gap-5 lg:w-[70%]">
+                <div class="lg:w-1/2 flex items-center">
+                  <img
+                    src="images/62fd08f5043f26d62897e90f745cb07d.png"
+                    class="lg:h-[280px] object-cover"
+                    alt=""
+                  />
+                </div>
+
+                <div class="flex flex-col gap-3 lg:w-1/2 lg:justify-center">
+                  <h3 class="text-2xl md:text-[28px] text-white">
+                    Aspers Casino
+                  </h3>
+                  <h4 class="text-[#FFBA53] text-lg">Official Rating</h4>
+                  <!--!STARS-->
+                  <div class="flex gap-2 mb-5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                  </div>
+                  <a
+                    href="#form-section"
+                    id="aspers"
+                    class="text-white w-[50%] md:w-[20%] lg:w-[40%] underline font-Inter font-bold text-lg text-center bg-[#01E819] p-3 rounded-xl"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+
+              <div class="text-white flex flex-col gap-2 lg:w-[30%]">
+                <h3 class="bg-[#01E819] text-lg p-2 font-bold">
+                  Aspers Casino is renowned for
+                </h3>
+                <p class="md:text-lg">
+                  Its top-tier land-based casinos, with prime locations in
+                  Northampton, Milton Keynes, Stratford, and Newcastle. Each
+                  venue offers a vibrant atmosphere, featuring a wide range of
+                  gaming options including poker, slots, and table games.
+                  Whether you're looking for high-energy excitement or a more
+                  relaxed gaming experience, Aspers Casino provides a welcoming
+                  environment with exceptional service, making it a standout
+                  destination for both novice and seasoned gamers.
+                </p>
+              </div>
+            </div>
+            <!--!hotel-->
+            <div class="flex flex-col lg:flex-row gap-5">
+              <div class="flex flex-col lg:flex-row gap-5 lg:w-[70%]">
+                <div class="lg:w-1/2 flex items-center">
+                  <img
+                    src="images/62fd08f5043f26d62897e90f745cb07d.png"
+                    class="lg:h-[280px] object-cover"
+                    alt=""
+                  />
+                </div>
+
+                <div class="flex flex-col gap-3 lg:w-1/2 lg:justify-center">
+                  <h3 class="text-2xl md:text-[28px] text-white">
+                    Genting Casino
+                  </h3>
+                  <h4 class="text-[#FFBA53] text-lg">Official Rating</h4>
+                  <!--!STARS-->
+                  <div class="flex gap-2 mb-5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                  </div>
+                  <a
+                    href="#form-section"
+                    id="genting"
+                    class="text-white w-[50%] md:w-[20%] lg:w-[40%] underline font-Inter font-bold text-lg text-center bg-[#01E819] p-3 rounded-xl"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+
+              <div class="text-white flex flex-col gap-2 lg:w-[30%]">
+                <h3 class="bg-[#01E819] text-lg p-2 font-bold">
+                  Genting Casino offers a large
+                </h3>
+                <p class="md:text-lg">
+                  Range of your favorite casino games, including Roulette,
+                  Blackjack, Three Card Poker, Baccarat, and Electronic
+                  Roulette. With multiple locations, Genting provides an
+                  engaging gaming experience, combining classic casino games
+                  with modern technology. The elegant atmosphere and
+                  professional staff ensure an enjoyable visit, whether you're a
+                  seasoned player or new to the casino scene.
+                </p>
+              </div>
+            </div>
+            <!--!hotel-->
+            <div class="flex flex-col lg:flex-row gap-5">
+              <div class="flex flex-col lg:flex-row gap-5 lg:w-[70%]">
+                <div class="lg:w-1/2 flex items-center">
+                  <img
+                    src="images/62fd08f5043f26d62897e90f745cb07d.png"
+                    class="lg:h-[280px] object-cover"
+                    alt=""
+                  />
+                </div>
+
+                <div class="flex flex-col gap-3 lg:w-1/2 lg:justify-center">
+                  <h3 class="text-2xl md:text-[28px] text-white">
+                    ALEA Nottingham
+                  </h3>
+                  <h4 class="text-[#FFBA53] text-lg">Official Rating</h4>
+                  <!--!STARS-->
+                  <div class="flex gap-2 mb-5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                  </div>
+                  <a
+                    href="#form-section"
+                    id="alea"
+                    class="text-white w-[50%] md:w-[20%] lg:w-[40%] underline font-Inter font-bold text-lg text-center bg-[#01E819] p-3 rounded-xl"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+
+              <div class="text-white flex flex-col gap-2 lg:w-[30%]">
+                <h3 class="bg-[#01E819] text-lg p-2 font-bold">
+                  ALEA Casino offers one of the
+                </h3>
+                <p class="md:text-lg">
+                  East Midlands’ most elegant and sophisticated gaming
+                  experiences, unmatched by any other casino in Nottingham. With
+                  stylish interiors and a vibrant atmosphere, ALEA provides a
+                  premier destination for gaming, dining, and entertainment. The
+                  casino features a wide range of games, upscale dining options,
+                  and live events, making it a top choice for a luxurious night
+                  out in Nottingham.
+                </p>
+              </div>
+            </div>
+            <!--!hotel-->
+            <div class="flex flex-col lg:flex-row gap-5">
+              <div class="flex flex-col lg:flex-row gap-5 lg:w-[70%]">
+                <div class="lg:w-1/2 flex items-center">
+                  <img
+                    src="images/62fd08f5043f26d62897e90f745cb07d.png"
+                    class="lg:h-[280px] object-cover"
+                    alt=""
+                  />
+                </div>
+
+                <div class="flex flex-col gap-3 lg:w-1/2 lg:justify-center">
+                  <h3 class="text-2xl md:text-[28px] text-white">
+                    Rainbow Casino
+                  </h3>
+                  <h4 class="text-[#FFBA53] text-lg">Official Rating</h4>
+                  <!--!STARS-->
+                  <div class="flex gap-2 mb-5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFAC33"
+                        d="M27.287 34.627c-.404 0-.806-.124-1.152-.371L18 28.422l-8.135 5.834a1.97 1.97 0 0 1-2.312-.008a1.971 1.971 0 0 1-.721-2.194l3.034-9.792l-8.062-5.681a1.98 1.98 0 0 1-.708-2.203a1.978 1.978 0 0 1 1.866-1.363L12.947 13l3.179-9.549a1.976 1.976 0 0 1 3.749 0L23 13l10.036.015a1.975 1.975 0 0 1 1.159 3.566l-8.062 5.681l3.034 9.792a1.97 1.97 0 0 1-.72 2.194a1.957 1.957 0 0 1-1.16.379"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        fill="#FFBA53"
+                        d="M34 16.78a2.22 2.22 0 0 0-1.29-4l-9-.34a.23.23 0 0 1-.2-.15l-3.11-8.4a2.22 2.22 0 0 0-4.17 0l-3.1 8.43a.23.23 0 0 1-.2.15l-9 .34a2.22 2.22 0 0 0-1.29 4l7.06 5.55a.23.23 0 0 1 .08.24l-2.43 8.61a2.22 2.22 0 0 0 3.38 2.45l7.46-5a.22.22 0 0 1 .25 0l7.46 5a2.2 2.2 0 0 0 2.55 0a2.2 2.2 0 0 0 .83-2.4l-2.45-8.64a.22.22 0 0 1 .08-.24Zm-9.1 6.33l2.45 8.64A.22.22 0 0 1 27 32l-7.46-5a2.2 2.2 0 0 0-1.24-.38V4.44a.2.2 0 0 1 .21.15L21.62 13a2.22 2.22 0 0 0 2 1.46l9 .34a.22.22 0 0 1 .13.4l-7.06 5.55a2.21 2.21 0 0 0-.79 2.36"
+                        class="clr-i-solid clr-i-solid-path-1"
+                      />
+                      <path fill="none" d="M0 0h36v36H0z" />
+                    </svg>
+                  </div>
+                  <a
+                    href="#form-section"
+                    id="rainbow"
+                    class="text-white w-[50%] md:w-[20%] lg:w-[40%] underline font-Inter font-bold text-lg text-center bg-[#01E819] p-3 rounded-xl"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+
+              <div class="text-white flex flex-col gap-2 lg:w-[30%]">
+                <h3 class="bg-[#01E819] text-lg p-2 font-bold">
+                  Located in Bristol’s Harbourside,
+                </h3>
+                <p class="md:text-lg">
+                  Rainbow Casino Bristol is a modern and stylish venue, perfect
+                  for starting or ending your night in style. Offering a vibrant
+                  atmosphere, it features a wide range of casino games, a
+                  well-stocked bar, and fine dining options. The casino combines
+                  contemporary design with a welcoming environment, making it a
+                  prime destination for both casual and seasoned gamers.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ? Advices section -->
+      <section id="advices-section" class="flex flex-col items-center">
+        <div
+          class="flex flex-col px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="flex gap-3">
+            <h2
+              class="w-1/2 text-white font-bold text-2xl md:text-[28px]/[47px] lg:text-[52px]/[100px]"
+            >
+              Advices for Maximize your casino hotel experience with these pro
+              tips:
+            </h2>
+
+            <div class="flex justify-center items-center w-1/2">
+              <hr class="h-[1px] w-full bg-white" />
+            </div>
+          </div>
+
+          <!--!CARDS-->
+          <article
+            class="flex flex-col border lg:flex-row lg:justify-between md:[&>div]:h-[120px] lg:[&>div]:h-[150px] [&>div]:border md:[&>div]:w-full items-center gap-5 lg:flex-wrap lg:[&>div]:w-[48%]"
+          >
+            <!--!card-->
+            <div class="flex gap-2">
+              <div class="w-[20%] flex justify-center items-center">
+                <h3 class="text-white text-[45px] font-bold">01</h3>
+              </div>
+              <div class="w-[80%]">
+                <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                  Flexible Booking
+                </h2>
+                <p class="text-white p-2">
+                  Take advantage of deposit needed or no deposit needed
+                  optionswhen booking your hotel.
+                </p>
+              </div>
+            </div>
+
+            <!--!card-->
+            <div class="flex gap-2">
+              <div class="w-[20%] flex justify-center items-center">
+                <h3 class="text-white text-[45px] font-bold">02</h3>
+              </div>
+              <div class="w-[80%]">
+                <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                  24/7 Support
+                </h2>
+                <p class="text-white p-2">
+                  Utilize round-the-clock online services for reservations and
+                  customer inquiries.
+                </p>
+              </div>
+            </div>
+
+            <!--!card-->
+            <div class="flex gap-2">
+              <div class="w-[20%] flex justify-center items-center">
+                <h3 class="text-white text-[45px] font-bold">03</h3>
+              </div>
+              <div class="w-[80%]">
+                <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                  Stay Fit
+                </h2>
+                <p class="text-white p-2">
+                  Access GYM and Spinning classes within the hotel to maintain
+                  your fitness routine.
+                </p>
+              </div>
+            </div>
+
+            <!--!card-->
+            <div class="flex gap-2">
+              <div class="w-[20%] flex justify-center items-center">
+                <h3 class="text-white text-[45px] font-bold">04</h3>
+              </div>
+              <div class="w-[80%]">
+                <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                  ATM Access
+                </h2>
+                <p class="text-white p-2">
+                  Conveniently withdraw cash with an ATM available inside the
+                  hotel.
+                </p>
+              </div>
+            </div>
+            <!--!card-->
+            <div class="flex gap-2 flex-grow">
+              <div class="w-[20%] flex justify-center items-center">
+                <h3 class="text-white text-[45px] font-bold">05</h3>
+              </div>
+              <div class="w-[80%]">
+                <h2 class="bg-[#01E819] text-[#F0F0F0] p-2 text-2xl font-bold">
+                  ATM Access
+                </h2>
+                <p class="text-white p-2">
+                  Relish Top Shelf Liquors and gourmet dishes from the best
+                  restaurants and room service.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- ? 24/7 section -->
+      <section id="24-section" class="flex justify-center">
+        <div
+          class="flex flex-col px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="custom-bg flex justify-center items-center h-[250px]">
+            <h4
+              class="font-bold text-white text-[38px]/[45px] p-10 text-center md:w-[40%]"
+            >
+              24/7 Online support Contact us
+              <span class="font-extrabold">TODAY</span>
+            </h4>
+          </div>
+        </div>
+      </section>
+
+      <!-- ? text-area-form section -->
+      <section id="text-area-section" class="flex justify-center">
+        <div
+          class="flex flex-col w-full items-center px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <form
+            id="always-form"
+            action=""
+            class="flex flex-col rounded-[32px] md:w-[80%] py-10 gap-4 p-5 w-full [&>input]:p-3 [&>input]:font-medium [&>input]:rounded-xl [&>label]:font-bold [&>label]:text-[#F0F0F0] [&>label]:text-2xl"
+          >
+            <label for="name"> Name </label>
+            <input
+              type="text"
+              placeholder="Type name"
+              class="bg-[#F0F0F0] placeholder:text-[#00000040]"
+              name="name"
+              id=""
+            />
+            <label for="lastname"> Lastname </label>
+            <input
+              class="bg-[#F0F0F0] placeholder:text-[#00000040]"
+              type="text"
+              name="lastname"
+              placeholder="Type lastname"
+              id=""
+            />
+            <label for="email"> Email </label>
+            <input
+              class="bg-[#F0F0F0] placeholder:text-[#00000040]"
+              type="tel"
+              name="email"
+              placeholder="Type your email"
+              id=""
+            />
+            <label for="date">Date</label>
+            <input
+              type="date"
+              name="date"
+              id=""
+              class="placeholder:text-[#00000040] bg-[#F0F0F0]"
+            />
+
+            <label for="message"> Message </label>
+            <textarea
+              name=""
+              class="rounded-xl p-3 min-h-[100px] resize-none bg-[#F0F0F0]"
+              id=""
+            ></textarea>
+
+            <button
+              onclick="sendSubscribeForm('always-form')"
+              class="flex bg-[#01E819] justify-center items-center gap-3 p-3 rounded-xl w-full self-center mt-2"
+              type="submit"
+            >
+              <h4 class="text-white font-medium font-Heebo text-xl">
+                Send message
+              </h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#ffffff"
+                  d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2m0 15v-4H7v-2h5V7l5 5z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ? advices/cards section -->
+      <section id="advices-cards-section" class="flex justify-center">
+        <div
+          class="flex flex-col px-4 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="flex gap-3">
+            <h2
+              class="w-1/2 text-white font-bold text-2xl md:text-[28px]/[47px] lg:text-[52px]/[100px]"
+            >
+              Advices for Maximize your casino hotel experience with these pro
+              tips:
+            </h2>
+
+            <div class="flex h-full justify-center items-center w-1/2">
+              <hr class="h-[1px] w-full bg-white" />
+            </div>
+          </div>
+          <div class="">
+            <h3 class="text-white">
+              We take care of every detail for your ultimate relaxation and
+              enjoyment.
+            </h3>
+          </div>
+
+          <!--!CARDS-->
+          <article
+            class="flex flex-col md:flex-row md:justify-between md:flex-wrap [&>div]:p-2 [&>div]:border md:[&>div]:w-[48%] lg:[&>div]:w-[31%] md:[&>div]:h-[450px] lg:[&>div]:h-[470px] gap-5 items-center [&>div>div]:border-dashed"
+          >
+            <!--!card-->
+            <div class="flex flex-col gap-5">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">
+                Customizable Packages
+              </h2>
+              <h3 class="text-white">
+                Choose from tailored packages that cater to your unique
+                preferences and needs, ensuring a personalized and unforgettable
+                experience.
+              </h3>
+            </div>
+            <!--!card-->
+            <div class="flex flex-col gap-5">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">
+                Flexible Booking Options
+              </h2>
+              <h3 class="text-white">
+                Opt for deposit or no deposit options as outlined in the hotel
+                descriptions to match your financial preferences.
+              </h3>
+            </div>
+            <!--!card-->
+            <div class="flex flex-col gap-5">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">
+                On-Demand Entertainment
+              </h2>
+              <h3 class="text-white">
+                Access a wide range of entertainment options, from live shows to
+                gaming, available right at your fingertips.
+              </h3>
+            </div>
+            <!--!card-->
+            <div class="flex flex-col gap-5">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">
+                Convenience at Your Fingertips
+              </h2>
+              <h3 class="text-white">
+                Utilize 24/7 online services for smooth booking, inquiries, and
+                support, keeping you connected at all times.
+              </h3>
+            </div>
+            <!--!card-->
+            <div class="flex flex-col gap-5">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">Relaxation Amenities</h2>
+              <h3 class="text-white">
+                Unwind with our luxurious spa services, including massages,
+                facials, and other treatments designed to rejuvenate you.
+              </h3>
+            </div>
+            <!--!card-->
+            <div class="flex flex-col gap-5">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">Fitness and Wellness</h2>
+              <h3 class="text-white">
+                Keep up with your fitness goals with access to our modern gym
+                and energizing spinning classes available on-site.
+              </h3>
+            </div>
+            <!--!card-->
+            <div class="flex flex-col gap-5 flex-grow">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">Secure Parking</h2>
+              <h3 class="text-white">
+                Benefit from our secure and spacious parking facilities,
+                providing peace of mind for your vehicle during your stay.
+              </h3>
+            </div>
+            <!--!card-->
+            <div class="flex flex-col gap-5 flex-grow">
+              <div class="h-[260px] border-[7px] border-[#01E819] w-full">
+                <img
+                  src="images/fb165dfff83e72fe0e4967f326d6c870.jpeg"
+                  class="h-full w-full object-cover"
+                  alt=""
+                />
+              </div>
+              <h2 class="text-white font-bold text-xl">Indulge in Luxury</h2>
+              <h3 class="text-white">
+                Delight in the finest top-shelf liquors and indulge in gourmet
+                dining with our best-in-class restaurants and exceptional room
+                service.
+              </h3>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ? F.A.Q section -->
+      <section
+        id="faq-section"
+        class="flex justify-center px-4 py-[80px] font-IBM"
+      >
+        <div
+          class="flex flex-col px-4 bg-[#01E819] lg:px-10 sm:px-8 gap-10 py-10 md:py-14 lg:py-20 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="text-[#181818] bg-[#01E819] flex flex-col gap-8">
+            <article class="carousel w-full">
+              <div
+                class="cards w-[300px] md:w-auto [&>div>div>h4]:text-center h-[300px] sm:h-[180px] lg:h-max lg:[&>div>p]:text-lg md:[&>div>p]:text-base"
+              >
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      What is the cancellation policy?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    You need to cancel at least 48 hours before your scheduled
+                    time to receive a full refund.
+                  </p>
+                </div>
+
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-center font-Poppins">
+                      What services can [NOMBRE DINÁMICO] assist with?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    [NOMBRE DINÁMICO] can help arrange dining reservations, book
+                    spa appointments, and organize entertainment activities.
+                  </p>
+                </div>
+
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-center font-Poppins">
+                      What security measures are in place?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    [NOMBRE DINÁMICO] adheres to all necessary safety protocols.
+                  </p>
+                </div>
+
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      What payment methods are accepted?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    We accept credit cards, debit cards, and bank transfers.
+                  </p>
+                </div>
+
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      Do you offer VIP packages?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Yes, we have exclusive VIP packages customized to meet your
+                    needs.
+                  </p>
+                </div>
+
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      How far in advance should I book [NOMBRE DINÁMICO]?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    We recommend booking at least two weeks ahead.
+                  </p>
+                </div>
+
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      Do you offer VIP packages?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Yes, we have exclusive VIP packages customized to meet your
+                    needs.
+                  </p>
+                </div>
+
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      How far in advance should I book [NOMBRE DINÁMICO]?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    We recommend booking at least two weeks ahead.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      What if I have a special request or need?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    [NOMBRE DINÁMICO] can accommodate special requests; just let
+                    us know your needs.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      Is there a loyalty program available?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Yes, we offer a loyalty program for our repeat customers.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      What are the check-in and check-out times?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Check-in and check-out times vary by hotel; we'll provide
+                    this information when you book.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      Is a security deposit required?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Certain hotels may require a security deposit, and we will
+                    inform you if that is the case.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      How do I check the availability of [NOMBRE DINÁMICO]?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    You can verify availability on our website or by contacting
+                    our support team.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      How do I get started with booking [NOMBRE DINÁMICO]?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Visit our booking page, select your dates, and complete the
+                    form to begin.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      What tasks can [NOMBRE DINÁMICO] handle?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    [NOMBRE DINÁMICO] manages bookings, concierge services, and
+                    event planning.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      How is my personal information safeguarded?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    We employ advanced encryption techniques to ensure your data
+                    is secure.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      When is the payment due?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Payment is required at the time of booking.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      How far in advance should I book [NOMBRE DINÁMICO]?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    We recommend booking at least two weeks ahead.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      Are the facilitators background-checked?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Yes, all facilitators undergo thorough background checks.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      Can [NOMBRE DINÁMICO] assist with transportation
+                      arrangements?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Yes, we can arrange for your transportation needs as well.
+                  </p>
+                </div>
+                <!-- !faq  -->
+                <div class="card flex flex-col gap-4 w-full">
+                  <div class="flex items-center justify-center gap-2">
+                    <h4 class="text-2xl font-semibold text-left font-Poppins">
+                      How do I modify my booking?
+                    </h4>
+                  </div>
+
+                  <p
+                    class="text-center overflow-y-auto overflow text-sm font-Mulish"
+                  >
+                    Contact our support team to make any changes to your
+                    booking.
+                  </p>
+                </div>
+              </div>
+
+              <div class="carousel-controls" id="contact-ref">
+                <button class="prev-btn prev-btn-1 z-30">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNS41NSIgaGVpZ2h0PSIyMy40NjE5MTQwNjI0OTk5OTYiIHZpZXdCb3g9IjAgMCA0NzUgNzE3Ij48cGF0aCBmaWxsPSIjMTgxODE4IiBkPSJtMjI3IDM1N2wyNDYgMjQ2bC0xMTkgMTE0TDAgMzYzTDM2MiAwbDExMyAxMTJ6Ii8+PC9zdmc+"
+                    alt="Previous"
+                  />
+                </button>
+
+                <div class="counter">
+                  <span class="current"></span>
+                  <span>/</span>
+                  <span class="total"></span>
+                </div>
+
+                <button class="next-btn next-btn-1 z-30">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNS41NSIgaGVpZ2h0PSIyMy40NjE5MTQwNjI0OTk5OTYiIHZpZXdCb3g9IjAgMCA0NzUgNzE3Ij48cGF0aCBmaWxsPSIjMTgxODE4IiBkPSJNMjQ4IDM2MUwyIDExNUwxMjEgMGwzNTQgMzU1bC0zNjMgMzYyTDAgNjA2eiIvPjwvc3ZnPg=="
+                    alt="Next"
+                  />
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <footer id="footer" class="flex justify-center">
+        <div
+          class="flex flex-col px-4 border-[7px] bg-[#01E819] border-white py-10 sm:px-8 lg:px-10 gap-8 sm:gap-16 md:gap-10 sm:w-[640px] md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1400px]"
+        >
+          <div class="flex flex-col gap-8 lg:flex-row lg:gap-10">
+            <div class="flex flex-col gap-2 justify-center lg:w-[59%]">
+              <div>
+                <img src="" class="w-[50px] hidden lg:block" alt="logo" />
+              </div>
+              <h2 class="text-[#181818] text-[28px] font-medium lg:hidden">
+                Infinite FunSlots
+              </h2>
+              <p class="text-lg text-[#181818]">
+                This domain is operated by [NOMBRE DINÁMICO]. Some hotels
+                featured on our platform may contain sponsored content or
+                promotional placements. We are committed to providing accurate
+                and thorough evaluations of all hotels. By booking through our
+                links, we may earn a commission at no additional cost to you.
+              </p>
+              <p class="text-lg">
+                It is essential to play responsibly. Set limits, stick to your
+                budget, and avoid financial stress. If at any point you feel you
+                are losing control, seek help immediately. Gambling should be a
+              </p>
+            </div>
+
+            <div class="flex flex-col justify-start gap-3 lg:w-[19%]">
+              <h3 class="text-lg font-bold">Links</h3>
+              <ul class="text-lg flex flex-col gap-2 [&>li]:cursor-pointer">
+                <li><a href="#home-section">Home</a></li>
+                <li><a href="#about-section">About</a></li>
+                <li><a href="#advices-section">Benefits</a></li>
+                <li><a href="#24-section">Contact</a></li>
+                <li><a href="#hotels-section">Get to know </a></li>
+              </ul>
+            </div>
+            <div class="flex flex-col gap-3 justify-start lg:w-[19%]">
+              <h3 class="text-lg font-bold">Politics</h3>
+              <ul class="text-lg flex flex-col gap-2 [&>li]:cursor-pointer">
+                <li>
+                  <a onclick="clickModal('terms-modal')"
+                    >Terms and Conditions
+                  </a>
+                </li>
+                <li>
+                  <a onclick="clickModal('privacy-modal')">Privacy Policy </a>
+                </li>
+                <li>
+                  <a onclick="clickModal('cookies-modal')">Cookies</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="flex flex-col gap-3 lg:hidden">
+              <h3 class="text-lg font-bold">Enjoy Responsibly</h3>
+              <p class="text-lg">
+                It is essential to play responsibly. Set limits, stick to your
+                budget, and avoid financial stress. If at any point you feel you
+                are losing control, seek help immediately. Gambling should be a
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ! Modals -->
+    <!-- ? Terms and Conditions Modal -->
+    <section
+      id="terms-modal"
+      class="bg-[#00000088] font-IBM flex items-center justify-center min-h-screen absolute z-50 hidden"
+    >
+      <div
+        class="fixed inset-0 w-full bg-[#00000088] flex items-center justify-center max-h-screen"
+      >
+        <div
+          class="bg-white shadow-lg w-11/12 sm:w-8/12 lg:max-w-[600px] h-auto max-h-54 rounded-md"
+        >
+          <div class="relative flex items-end">
+            <img
+              class="hover:cursor-pointer absolute top-0 right-0 w-7 m-4 rounded-xs"
+              onclick="clickModal('terms-modal')"
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjRUZFRkVGIiBkPSJNMTkgM0g1YTIgMiAwIDAgMC0yIDJ2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0yVjVhMiAyIDAgMCAwLTItMm0tMy40IDE0TDEyIDEzLjRMOC40IDE3TDcgMTUuNmwzLjYtMy42TDcgOC40TDguNCA3bDMuNiAzLjZMMTUuNiA3TDE3IDguNEwxMy40IDEybDMuNiAzLjZ6Ii8+PC9zdmc+"
+              alt=""
+            />
+            <div class="bg-[#181609] w-full">
+              <h2 class="text-base text-center p-4 font-bold text-white w-full">
+                Terms and Conditions
+              </h2>
+            </div>
+          </div>
+
+          <article
+            class="overflow-y-auto bg-[#FAFAFA] overflow-x-hidden h-96 p-5 text-xs flex flex-col gap-4 font-Poppins"
+          >
+            <h2 class="font-bold text-xl">Terms and Conditions</h2>
+            <h3 class="font-semibold text-lg">Introduction</h3>
+            <p class="text-sm">
+              Welcome to <span class="dyn-domain"></span>. By using our website,
+              you agree to comply with and be bound by the following terms and
+              conditions of use, which, together with our privacy policy and
+              cookie policy, govern [NOMBRE DINÁMICO]'s relationship with you in
+              relation to this website. If you disagree with any part of these
+              terms and conditions, please do not use our website.
+            </p>
+            <h3 class="font-semibold text-lg">Definitions</h3>
+            <p class="text-sm">
+              1. "<span class="dyn-name"></span>": Refers to our website and
+              services.<br />
+              2. "User": Refers to any person who accesses and uses our
+              website.<br />
+              3. "Hotel": Refers to the accommodation properties promoted on our
+              website.
+            </p>
+
+            <h3 class="font-semibold text-lg">Intermediation Service</h3>
+            <p class="text-sm">
+              <span class="dyn-name"></span> serves solely as an intermediary,
+              facilitating contact between visitors and hotels. Our website
+              enables users to explore a variety of casino hotels in the United
+              Kingdom and submit their contact information so the selected hotel
+              can communicate with them directly.
+              <span class="dyn-name"></span> does not participate in the
+              booking, provision of services, or experiences provided by the
+              hotels.
+            </p>
+
+            <h3 class="font-semibold text-lg">Limitation of Liability</h3>
+            <p class="text-sm">
+              • Bookings and Services: <span class="dyn-name"></span> is not
+              responsible for managing bookings, the quality of services, room
+              availability, or any other aspect of the stay at the hotels listed
+              on our website. All negotiations and agreements are between the
+              user and the hotel.<br />
+              • Information: While we strive to provide accurate and up-to-date
+              information, we do not guarantee the accuracy, completeness, or
+              timeliness of the content on the website. Users should verify any
+              important details directly with the hotel before making a
+              booking.<br />
+              • User Experiences: <span class="dyn-name"></span> is not
+              responsible for the experiences users have at the hotels,
+              including but not limited to accommodation conditions, service
+              quality, facilities, and amenities.
+            </p>
+
+            <h3 class="font-semibold text-lg">Privacy and Personal Data</h3>
+            <p class="text-sm">
+              By using our website, you agree that
+              <span class="dyn-name"></span>
+              collects and uses your personal information in accordance with our
+              Privacy Policy. The provided data will be shared only with the
+              selected hotel so they can contact you directly.
+            </p>
+
+            <h3 class="font-semibold text-lg">Third-Party Links</h3>
+            <p class="text-sm">
+              Our website may contain links to other websites of interest. These
+              links are provided for your convenience and do not imply that we
+              endorse those websites. We have no control over the content of
+              those websites and accept no responsibility for them or for any
+              loss or damage that may arise from your use of them.
+            </p>
+
+            <h3 class="font-semibold text-lg">
+              Changes to the Terms and Conditions
+            </h3>
+            <p class="text-sm">
+              <span class="dyn-name"></span> reserves the right to modify these
+              terms and conditions at any time. Any changes will be effective
+              immediately upon posting on this page. Users are encouraged to
+              review these terms periodically to stay informed of any updates.
+            </p>
+
+            <h3 class="font-semibold text-lg">
+              Governing Law and Jurisdiction
+            </h3>
+            <p class="text-sm">
+              These terms and conditions are governed by the laws of the United
+              Kingdom. Any dispute relating to these terms and conditions will
+              be subject to the exclusive jurisdiction of the courts of the
+              United Kingdom.
+            </p>
+
+            <h3 class="font-semibold text-lg">Contact</h3>
+            <p class="text-sm">
+              If you have any questions about these terms and conditions, please
+              contact us through our contact form on the website.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ? Privacy Policy Modal -->
+    <section
+      id="privacy-modal"
+      class="bg-[#00000088] font-IBM flex items-center justify-center min-h-screen absolute z-50 hidden"
+    >
+      <div
+        class="fixed inset-0 w-full bg-[#00000088] flex items-center justify-center max-h-screen"
+      >
+        <div
+          class="bg-white shadow-lg w-11/12 sm:w-8/12 lg:max-w-[600px] h-auto max-h-54 rounded-md"
+        >
+          <div class="relative flex items-end">
+            <img
+              class="hover:cursor-pointer absolute top-0 right-0 w-7 m-4 rounded-xs"
+              onclick="clickModal('privacy-modal')"
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjRUZFRkVGIiBkPSJNMTkgM0g1YTIgMiAwIDAgMC0yIDJ2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0yVjVhMiAyIDAgMCAwLTItMm0tMy40IDE0TDEyIDEzLjRMOC40IDE3TDcgMTUuNmwzLjYtMy42TDcgOC40TDguNCA3bDMuNiAzLjZMMTUuNiA3TDE3IDguNEwxMy40IDEybDMuNiAzLjZ6Ii8+PC9zdmc+"
+              alt=""
+            />
+            <div class="bg-[#181609] w-full">
+              <h2 class="text-base text-center p-4 font-bold text-white w-full">
+                Privacy Policy
+              </h2>
+            </div>
+          </div>
+
+          <article
+            class="overflow-y-auto overflow-x-hidden bg-[#FAFAFA] h-96 p-5 text-xs flex flex-col gap-4"
+          >
+            <h2 class="font-bold text-xl">Introduction</h2>
+            <h3 class="font-semibold text-lg">Introduction</h3>
+            <p class="text-sm">
+              The <span class="dyn-domain"></span>.com domain is owned and
+              operated by <span class="dyn-domain"></span>. This means [NOMBRE
+              DINÁMICO] owns and is responsible for the content created by its
+              team to develop this website. At <span class="dyn-domain"></span>,
+              we value and respect your privacy. This Privacy Policy outlines
+              how we collect, use, and protect your personal information when
+              you visit and use our website. By using our site, you agree to the
+              practices described in this policy
+            </p>
+            <h3 class="font-semibold text-lg">Information We Collect</h3>
+            <p class="text-sm">
+              • Contact Information: Name, email address, phone number.<br />
+              • Demographic Information: Preferences, interests, and other
+              relevant information for surveys and offers.<br />
+              • Usage Information: Data on how you use our website, including
+              the pages you visit and the actions you take.
+            </p>
+
+            <h3 class="font-semibold text-lg">Use of Collected Information</h3>
+            <p class="text-sm">
+              The information we collect is used for the following purposes:<br />
+              • Connecting with Hotels: We use your information to connect you
+              with your preferred hotel or casino. The selected hotel will be
+              responsible for contacting you directly.<br />
+              • Improving Our Service: Analyzing website usage to improve our
+              services and user experience.<br />
+              • Communication: Sending promotional emails about new products,
+              special offers, or other information we think you may find
+              interesting.<br />
+              • Personalization: Customizing the website according to your
+              interests and preferences.
+            </p>
+
+            <h3 class="font-semibold text-lg">
+              Sharing Information with Third Parties
+            </h3>
+            <p class="text-sm">
+              • Hotels: We share your information only with your preferred hotel
+              or casino so they can contact you directly.<br />
+              • Service Providers: We may share information with service
+              providers who assist us in operating the website, provided that
+              these providers agree to keep the information confidential.<br />
+              • Legal Requirements: We may disclose your information when
+              required by law or in response to legal requests from authorities.
+            </p>
+
+            <h3 class="font-semibold text-lg">Protecting Information</h3>
+            <p class="text-sm">
+              We are committed to ensuring that your information is secure. To
+              prevent unauthorized access or disclosure, we have put in place
+              suitable physical, electronic, and administrative procedures to
+              safeguard and protect the information we collect online.
+            </p>
+
+            <h3 class="font-semibold text-lg">Cookies</h3>
+            <p class="text-sm">
+              Our website uses cookies to enhance your experience. A cookie is a
+              small file that asks permission to be placed on your computer's
+              hard drive. Once you agree, the file is added, and the cookie
+              helps analyze web traffic or lets you know when you visit a
+              particular site. We use cookies to identify which pages are being
+              used. This helps us analyze data about web traffic and improve our
+              website to tailor it to customer needs. You can choose to accept
+              or decline cookies. Most web browsers automatically accept
+              cookies, but you can usually modify your browser setting to
+              decline cookies if you prefer. This may prevent you from taking
+              full advantage of the website.
+            </p>
+            <h3 class="font-semibold text-lg">Links to Other Websites</h3>
+            <p class="text-sm">
+              Our website may contain links to other websites of interest.
+              However, once you have used these links to leave our site, you
+              should note that we do not have any control over those other
+              websites. Therefore, we cannot be responsible for the protection
+              and privacy of any information that you provide while visiting
+              such sites, and such sites are not governed by this privacy
+              statement. You should exercise caution and look at the privacy
+              statement applicable to the website in question.
+            </p>
+            <h3 class="font-semibold text-lg">
+              Controlling Your Personal Information
+            </h3>
+            <p class="text-sm">
+              You may choose to restrict the collection or use of your personal
+              information in the following ways: <br />
+              Registration Form: Whenever you are asked to fill in a form on the
+              website, look for the box that you can click to indicate that you
+              do not want the information to be used by anybody for direct
+              marketing purposes. <br />
+              Unsubscribing: If you have previously agreed to us using your
+              personal information for direct marketing purposes, you may change
+              your mind at any time by writing to or emailing us at [support
+              email address].
+            </p>
+            <h3 class="font-semibold text-lg">User Rights</h3>
+            <p class="text-sm">
+              You have the right to: <br />
+              Access: Request a copy of the information we hold about you.
+              <br />
+              Rectification: Correct any data we hold about you that is
+              inaccurate or incomplete. <br />
+              Erasure: Request that we delete your personal data, under certain
+              conditions. <br />
+              Restriction of Processing: Request that we restrict the processing
+              of your personal data, under certain conditions.
+              <br />
+              Data Portability: Request that we transfer the data we have
+              collected to another organization, or directly to you, under
+              certain conditions.
+            </p>
+            <h3 class="font-semibold text-lg">
+              Responsible Gambling and Gambling Addiction Prevention
+            </h3>
+            <p class="text-sm">
+              While our platform provides exciting opportunities to explore and
+              book hotel casinos, it is crucial to approach gambling with
+              caution and responsibility. We do not promote or endorse
+              compulsive gambling. If you choose to gamble, ensure that you have
+              the financial means to do so and be prepared to accept potential
+              losses. Gambling should be an enjoyable activity, not a source of
+              financial distress. If you feel that gambling is becoming a
+              problem, seek help immediately.
+            </p>
+            <h3 class="font-semibold text-lg">Limited Opportunity Notice</h3>
+            <p class="text-sm">
+              The offers and opportunities presented on our site are subject to
+              availability and may be time-sensitive. We recommend taking
+              advantage of these promotions promptly, as they may not be
+              available indefinitely.
+            </p>
+            <h3 class="font-semibold text-lg">Changes to the Privacy Policy</h3>
+            <p class="text-sm">
+              <span class="dyn-domain"></span> may update this privacy policy at
+              any time. It is recommended to review this page periodically to
+              stay informed of any changes. Changes will be effective
+              immediately upon posting on this page.
+            </p>
+            <h3 class="font-semibold text-lg">Contact</h3>
+            <p class="text-sm">
+              If you have any questions about this Privacy Policy or if you wish
+              to exercise any of your rights, please contact us through our
+              contact form on the website.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ? Cookies Modal -->
+    <section
+      id="cookies-modal"
+      class="bg-[#00000088] font-IBM flex items-center justify-center min-h-screen absolute z-50 hidden"
+    >
+      <div
+        class="fixed inset-0 w-full bg-[#00000088] flex items-center justify-center max-h-screen"
+      >
+        <div
+          class="bg-white shadow-lg w-11/12 sm:w-8/12 lg:max-w-[600px] h-auto max-h-54 rounded-md"
+        >
+          <div class="relative flex items-end">
+            <img
+              class="hover:cursor-pointer absolute top-0 right-0 w-7 m-4 rounded-xs"
+              onclick="clickModal('cookies-modal')"
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjRUZFRkVGIiBkPSJNMTkgM0g1YTIgMiAwIDAgMC0yIDJ2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0yVjVhMiAyIDAgMCAwLTItMm0tMy40IDE0TDEyIDEzLjRMOC40IDE3TDcgMTUuNmwzLjYtMy42TDcgOC40TDguNCA3bDMuNiAzLjZMMTUuNiA3TDE3IDguNEwxMy40IDEybDMuNiAzLjZ6Ii8+PC9zdmc+"
+              alt=""
+            />
+            <div class="bg-[#181609] w-full">
+              <h2 class="text-base text-center p-4 font-bold text-white w-full">
+                Cookie Policy
+              </h2>
+            </div>
+          </div>
+
+          <article
+            class="overflow-y-auto overflow-x-hidden h-96 p-5 text-xs flex flex-col gap-4 bg-[#FAFAFA]"
+          >
+            <h2 class="font-bold text-xl">Cookie Policy</h2>
+            <h3 class="font-semibold text-lg">Introduction</h3>
+            <p class="text-sm">
+              At <span class="dyn-name"></span>, we use cookies and similar
+              technologies to enhance your experience on our website. This
+              Cookie Policy explains what cookies are, how we use them, and how
+              you can manage them.
+            </p>
+            <h3 class="font-semibold text-lg">What Are Cookies?</h3>
+            <p class="text-sm">
+              Cookies are small text files stored on your device (computer,
+              tablet, smartphone, etc.) when you visit a website. These files
+              allow the website to recognize your device and remember certain
+              information about your preferences or past actions.
+            </p>
+            <h3 class="font-semibold text-lg">Types of Cookies We Use</h3>
+            <p class="text-sm">
+              Essential Cookies: These cookies are necessary for the website to
+              function properly. They enable navigation around the site and the
+              use of its essential features, such as accessing secure areas.
+              Without these cookies, the services you have requested cannot be
+              provided.
+              <br /><br />
+              Performance Cookies: These cookies collect information about how
+              visitors use the website, such as which pages are visited most
+              frequently and if they receive error messages from web pages.
+              These cookies do not collect information that identifies a
+              visitor. All information collected by these cookies is aggregated
+              and therefore anonymous. It is only used to improve the
+              functioning of the website.
+              <br /><br />
+              Functionality Cookies: These cookies allow the website to remember
+              the choices you make (such as your username, language, or the
+              region you are in) and provide enhanced, more personal features.
+              For example, they can be used to remember changes you have made to
+              text size, fonts, and other parts of web pages that you can
+              customize. They can also be used to provide services you have
+              asked for, such as watching a video or commenting on a blog. The
+              information these cookies collect may be anonymized and they
+              cannot track your browsing activity on other websites.
+              <br /><br />
+              Advertising Cookies: These cookies are used to deliver
+              advertisements more relevant to you and your interests. They are
+              also used to limit the number of times you see an advertisement
+              and help measure the effectiveness of advertising campaigns. They
+              are usually placed by advertising networks with the website
+              operator’s permission. They remember that you have visited a
+              website and this information is shared with other organizations,
+              such as advertisers. Often, advertising cookies will be linked to
+              site functionality provided by the other organization.
+            </p>
+            <h3 class="font-semibold text-lg">
+              Use of Cookies on <span class="dyn-domain"></span>
+            </h3>
+            <p class="text-sm">
+              At <span class="dyn-name"></span>, we use cookies to:
+              <br />
+              Personalize Your Experience: Tailor content and advertisements to
+              your interests and preferences.
+              <br />
+              Analyze Site Traffic: Collect information on how users interact
+              with our website, allowing us to improve its functionality and
+              user experience. <br />
+              Provide Specific Features: Remember your preferences and settings,
+              such as your preferred language or login credentials. <br />
+              Enhance Security: Ensure your session is secure and protect our
+              services against fraud and abuse.
+            </p>
+
+            <h3 class="font-semibold text-lg">Managing Cookies</h3>
+            <p class="text-sm">
+              You have control over cookies and can manage their settings at any
+              time. Here’s how you can do it: <br />
+              Browser Settings: Most web browsers allow you to control cookies
+              through their settings. You can set your browser to notify you
+              before accepting cookies or to simply reject them. However, if you
+              choose to reject cookies, you may not be able to take full
+              advantage of all the features on our website. <br />
+              Disabling Cookies: To disable cookies, follow the instructions
+              provided by your browser (usually located within the “Help,”
+              “Tools,” or “Edit” settings). Note that disabling cookies may
+              affect the functionality of this and other websites you visit.
+            </p>
+
+            <h3 class="font-semibold text-lg">Third-Party Cookies</h3>
+            <p class="text-sm">
+              In some cases, we may use third-party cookies provided by
+              associated services to help us understand and improve our
+              offerings better. These cookies are subject to the privacy
+              policies of these third parties, and we have no direct control
+              over them. Examples of these third parties include analytics
+              services (such as Google Analytics) and advertising networks.
+            </p>
+
+            <h3 class="font-semibold text-lg">Updates to the Cookie Policy</h3>
+            <p class="text-sm">
+              We may update our Cookie Policy at any time. We recommend that you
+              review this policy periodically to stay informed about any
+              changes. Changes will be effective immediately upon posting on
+              this page.
+            </p>
+
+            <h3 class="font-semibold text-lg">Contact</h3>
+            <p class="text-sm">
+              If you have any questions about our Cookie Policy, please contact
+              us through our contact form on the website.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ? Contact Modal -->
+    <section
+      id="contact-modal"
+      class="bg-[#00000088] font-IBM flex items-center justify-center min-h-screen absolute z-50 hidden"
+    >
+      <div
+        class="fixed inset-0 w-full bg-[#00000088] flex items-center justify-center max-h-screen"
+      >
+        <div
+          class="bg-white shadow-lg w-11/12 sm:w-8/12 lg:max-w-[600px] h-auto max-h-54 rounded-md"
+        >
+          <div class="relative flex items-end">
+            <img
+              class="hover:cursor-pointer absolute top-0 right-0 w-7 m-4 rounded-xs"
+              onclick="clickModal('contact-modal')"
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjRUZFRkVGIiBkPSJNMTkgM0g1YTIgMiAwIDAgMC0yIDJ2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0yVjVhMiAyIDAgMCAwLTItMm0tMy40IDE0TDEyIDEzLjRMOC40IDE3TDcgMTUuNmwzLjYtMy42TDcgOC40TDguNCA3bDMuNiAzLjZMMTUuNiA3TDE3IDguNEwxMy40IDEybDMuNiAzLjZ6Ii8+PC9zdmc+"
+              alt=""
+            />
+            <div class="w-full">
+              <h2
+                class="text-base text-center p-4 font-bold bg-[#181609] text-white w-full"
+              ></h2>
+            </div>
+          </div>
+
+          <article
+            class="overflow-y-auto bg-[#181609] overflow-x-hidden h-96 p-5 text-xs flex flex-col gap-4"
+          >
+            <div class="flex flex-col items-center w-full font-IBM">
+              <form
+                id="modal-form"
+                action=""
+                class="flex flex-col rounded-[32px] text-white md:w-[80%] bg-[#181609] py-10 gap-4 p-5 w-full [&>input]:p-3 [&>input]:font-medium [&>input]:rounded-xl [&>label]:font-bold [&>label]:text-2xl"
+              >
+                <h2 class="font-bold text-[40px]/[48px] md:text-[52px]/ pb-4">
+                  We will be happy to solve your doubts!
+                </h2>
+                <p class="text-white font-medium font-Heebo text-base">
+                  At <span class="dyn-name"></span> we want to provide not only
+                  the best options, but also the best customer services we can
+                  perform. In order to do that, we will be happy to help you at
+                  any of our contact channels. Let us know what you need to
+                  start working on it.
+                </p>
+
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  placeholder="Type name"
+                  class="bg-[#EEEEEE] placeholder:text-[#00000040]"
+                  name="name"
+                  id="name"
+                />
+                <label for="lastname">Lastname</label>
+                <input
+                  class="bg-[#EEEEEE] placeholder:text-[#00000040]"
+                  type="text"
+                  name="lastname"
+                  placeholder="Type lastname"
+                  id="lastname"
+                />
+                <label for="email">Email</label>
+                <input
+                  class="bg-[#EEEEEE] placeholder:text-[#00000040]"
+                  type="email"
+                  name="email"
+                  placeholder="Type your email"
+                  id="email"
+                />
+                <label for="message">Message</label>
+                <textarea
+                  name="message"
+                  class="rounded-xl p-3 min-h-[100px] resize-none bg-[#EEEEEE]"
+                  id="message"
+                ></textarea>
+
+                <button
+                  onclick="sendSubscribeForm('modal-form')"
+                  class="flex bg-white justify-center items-center gap-3 p-3 rounded-xl w-full self-center mt-2"
+                  type="submit"
+                >
+                  <h4
+                    class="text-[#181609] text-center font-medium font-Heebo text-lg"
+                  >
+                    Send message
+                  </h4>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="#181609"
+                      d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2m0 15v-4H7v-2h5V7l5 5z"
+                    />
+                  </svg>
+                </button>
+              </form>
+
+              <article class="flex flex-col gap-4 self-start">
+                <!--!modal-item-->
+                <div class="flex items-center gap-2">
+                  <img
+                    src="images/caseIcon.webp"
+                    class="w-[20px]"
+                    alt="case-icon"
+                  />
+                  <h4 class="text-white font-Inter">
+                    Company name: <span class="dyn-name"></span>
+                  </h4>
+                </div>
+                <!--!modal-item-->
+                <div class="flex items-center gap-2">
+                  <img
+                    src="images/pinIcon.webp"
+                    class="w-[20px]"
+                    alt="case-icon"
+                  />
+                  <h4 class="text-white font-Inter">Address : lorem ipsum</h4>
+                </div>
+                <!--!modal-item-->
+                <div class="flex items-center gap-2">
+                  <img
+                    src="images/telephoneIcon.webp"
+                    class="w-[20px]"
+                    alt="case-icon"
+                  />
+                  <h4 class="text-white font-Inter">
+                    Phone Number : lorem ipsum
+                  </h4>
+                </div>
+                <!--!modal-item-->
+                <div class="flex items-center gap-2">
+                  <img
+                    src="images/mailIcon.webp"
+                    class="w-[20px]"
+                    alt="case-icon"
+                  />
+                  <h4 class="text-white font-Inter">
+                    Email : info@<span class="dyn-domain"></span>
+                  </h4>
+                </div>
+              </article>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
